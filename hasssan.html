@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hasan Otaibi | Hacker CV</title>
+
+<style>
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background: radial-gradient(circle, #020617, #000);
+    color: #00ff88;
+    overflow-x: hidden;
+}
+
+/* ===== MATRIX BACKGROUND ===== */
+.matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.15;
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0%,100% { opacity: 0.12; }
+    50% { opacity: 0.2; }
+}
+
+/* ===== NAV ===== */
+nav {
+    border-bottom: 2px solid #00ff88;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav button, select {
+    background: transparent;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #00ff88;
+    color: #000;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 50px;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+    display: none;
+    animation: glitchIn 0.6s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes glitchIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1, h2 {
+    border-bottom: 1px solid #00ff88;
+    padding-bottom: 5px;
+}
+
+p, li {
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid #00ff88;
+    font-size: 13px;
+}
+
+/* ===== ARABIC ===== */
+.ar {
+    direction: rtl;
+    text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<canvas class="matrix"></canvas>
+
+<nav>
+    <button onclick="show('home')">HOME</button>
+    <button onclick="show('skills')">SKILLS</button>
+    <button onclick="show('languages')">LANGUAGES</button>
+    <button onclick="show('contact')">CONTACT</button>
+
+    <select onchange="setLang(this.value)">
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+        <option value="es">ES</option>
+        <option value="ru">RU</option>
+    </select>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+<div id="home" class="section active lang en">
+<h1>WELCOME</h1>
+<p>
+My name is Hasan Mohammad Hasan Otaibi.  
+I am an IT student passionate about programming and technology.  
+I enjoy understanding systems, writing code, and improving my logic.
+</p>
+</div>
+
+<div class="section lang ar ar">
+<h1>مرحباً</h1>
+<p>
+اسمي حسن محمد حسن العتيبي.  
+أنا طالب تقنية معلومات شغوف بالبرمجة والتكنولوجيا.  
+أحب فهم الأنظمة وبناء الحلول البرمجية وتطوير مهاراتي المنطقية.
+</p>
+</div>
+
+<div class="section lang es">
+<h1>BIENVENIDO</h1>
+<p>
+Mi nombre es Hasan Mohammad Hasan Otaibi.  
+Soy estudiante de TI apasionado por la programación y la tecnología.  
+Me gusta aprender cómo funcionan los sistemas y desarrollar software.
+</p>
+</div>
+
+<div class="section lang ru">
+<h1>ДОБРО ПОЖАЛОВАТЬ</h1>
+<p>
+Меня зовут Хасан Мохаммад Хасан Отайби.  
+Я студент ИТ, увлеченный программированием и технологиями.  
+Мне нравится изучать системы и развивать логическое мышление.
+</p>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="section lang en">
+<h1>SKILLS</h1>
+<ul>
+<li>Problem solving</li>
+<li>Logical thinking</li>
+<li>Clean code writing</li>
+<li>Web fundamentals</li>
+</ul>
+</div>
+
+<!-- LANGUAGES -->
+<div id="languages" class="section lang en">
+<h1>PROGRAMMING LANGUAGES</h1>
+
+<h2>HTML</h2>
+<p>Used to build the structure of web pages and organize content.</p>
+
+<h2>JavaScript</h2>
+<p>Adds logic, interactivity, and dynamic behavior to websites.</p>
+
+<h2>C++</h2>
+<p>Powerful language for algorithms, performance, and problem solving.</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section lang en">
+<h1>CONTACT</h1>
+<p>Email: hasanotaibi154@gmail.com</p>
+<p>Phone: 0791052519</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 | Hasan Mohammad Hasan Otaibi | Cyber Hacker CV
+</footer>
+
+<script>
+/* ===== PAGE SWITCH ===== */
+function show(id) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id)?.classList.add("active");
+}
+
+/* ===== LANGUAGE SWITCH ===== */
+function setLang(lang) {
+    document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
+    document.querySelectorAll("." + lang).forEach(el => el.style.display = "block");
+}
+
+/* ===== MATRIX EFFECT ===== */
+const canvas = document.querySelector(".matrix");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00ff88";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+        if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    });
+}
+
+setInterval(drawMatrix, 50);
+</script>
+
+</body>
+</html>
