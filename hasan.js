@@ -1,11 +1,13 @@
 // ===== FUNCTION TO SHOW SECTIONS =====
 function showSection(id) {
+    // إخفاء كل الأقسام
     document.querySelectorAll(".section").forEach(section => {
         section.classList.remove("active");
     });
+    // عرض القسم المختار
     document.getElementById(id).classList.add("active");
 
-    // إضافة تأثير توهج الزر المحدد
+    // توهج الزر النشط
     document.querySelectorAll("nav button").forEach(btn => {
         btn.style.boxShadow = "none";
     });
@@ -16,7 +18,7 @@ function showSection(id) {
 // ===== HACKER-TEXT EFFECT =====
 const hackerTextElements = document.querySelectorAll("h1, h2, p");
 
-// دالة تغير الأحرف عشوائياً لمدة قصيرة عند المرور
+// دالة تغير الأحرف عشوائياً بشكل مؤقت
 function hackerEffect(el) {
     const originalText = el.textContent;
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
@@ -36,7 +38,7 @@ function hackerEffect(el) {
     }, 50);
 }
 
-// إضافة تأثير عند المرور على العناوين والفقرات
+// إضافة التأثير عند مرور الماوس على النصوص
 hackerTextElements.forEach(el => {
     el.addEventListener("mouseenter", () => hackerEffect(el));
 });
@@ -48,7 +50,9 @@ navButtons.forEach(btn => {
         btn.style.boxShadow = "0 0 10px #00ff88, 0 0 20px #00ff88";
     });
     btn.addEventListener("mouseleave", () => {
-        if (!btn.classList.contains("active")) {
+        // يزيل التوهج إذا لم يكن الزر نشط
+        const sectionId = btn.getAttribute("onclick").match(/'(\w+)'/)[1];
+        if (!document.getElementById(sectionId).classList.contains("active")) {
             btn.style.boxShadow = "none";
         }
     });
