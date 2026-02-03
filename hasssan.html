@@ -2,81 +2,361 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hasan Otaibi | Hacker CV</title>
-<link rel="stylesheet" href="style.css">
+<title>Hasan Otaibi | Cyber CV</title>
+
+<style>
+/* ===== BASE ===== */
+body{
+    margin:0;
+    font-family:"Courier New", monospace;
+    background:#000;
+    color:#00ff88;
+    overflow-x:hidden;
+}
+
+/* ===== MATRIX ===== */
+.matrix{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    opacity:0.2;
+}
+
+/* ===== LOGIN ===== */
+#loginScreen{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+.login-box{
+    border:1px solid #00ff88;
+    padding:30px;
+    width:300px;
+    text-align:center;
+    box-shadow:0 0 30px #00ff8855;
+}
+.login-box input{
+    width:100%;
+    padding:8px;
+    margin:10px 0;
+    background:#000;
+    border:1px solid #00ff88;
+    color:#00ff88;
+}
+.login-box button{
+    width:100%;
+    padding:10px;
+    background:#00ff88;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ===== NAV ===== */
+nav{
+    border-bottom:2px solid #00ff88;
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+nav button, nav a, select{
+    background:transparent;
+    border:1px solid #00ff88;
+    color:#00ff88;
+    padding:8px 14px;
+    cursor:pointer;
+    text-decoration:none;
+}
+nav button:hover, nav a:hover{
+    background:#00ff88;
+    color:#000;
+}
+
+/* ===== CONTENT ===== */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+}
+.section{display:none;}
+.section.active{display:block;}
+
+/* ===== CARD ===== */
+.card{
+    border:1px solid #00ff88;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 0 20px #00ff8833;
+}
+
+/* ===== AUTO TYPE ===== */
+.auto-type{
+    border-right:2px solid #00ff88;
+    white-space:nowrap;
+    overflow:hidden;
+    min-height:1.2em;
+    animation:blink .8s infinite;
+}
+@keyframes blink{
+    50%{border-color:transparent;}
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:15px;
+    border-top:1px solid #00ff88;
+    font-size:13px;
+}
+
+/* ===== AR ===== */
+.ar{
+    direction:rtl;
+    text-align:right;
+}
+</style>
 </head>
 
 <body>
 
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen">
+    <div class="login-box">
+        <h3>CYBER LOGIN</h3>
+        <input placeholder="Username">
+        <input placeholder="Password" type="password">
+        <button onclick="login()">SIGN IN</button>
+    </div>
+</div>
+
+<canvas class="matrix"></canvas>
+
+<!-- ===== NAVBAR ===== -->
 <nav>
-    <button onclick="showSection('home')">HOME</button>
-    <button onclick="showSection('about')">ABOUT</button>
-    <button onclick="showSection('skills')">SKILLS</button>
-    <button onclick="showSection('contact')">CONTACT</button>
+    <button onclick="show('home')">HOME</button>
+    <button onclick="show('skills')">SKILLS</button>
+    <button onclick="show('explain')">EXPLANATION</button>
+    <button onclick="show('contact')">CONTACT</button>
+    <button onclick="show('chat')">AI CHAT</button>
+    <a href="https://www.google.com" target="_blank">GOOGLE</a>
+
+    <select onchange="setLang(this.value)">
+        <option value="en">EN</option>
+        <option value="ar">AR</option>
+    </select>
 </nav>
 
 <div class="container">
 
-<!-- HOME -->
-<div id="home" class="section active">
-    <h1>WELCOME</h1>
-    <p>
-        My name is <strong>Hasan Mohammad Hasan Otaibi</strong>.<br>
-        I am an IT student passionate about programming and web development.<br>
-        This website is a hacker-style personal CV built using HTML, CSS, and JavaScript.
-    </p>
+<!-- ===== HOME ===== -->
+<div id="home" class="section active lang en">
+<h1>WELCOME</h1>
+<div class="card">
+<p class="auto-type" data-text="System Online... Welcome to Hasan Otaibi Cyber CV"></p>
+
+<p>
+This page represents the main interface of the website.
+It is designed with a cyber / hacker theme using HTML, CSS and JavaScript.
+</p>
+</div>
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="section">
-    <h1>ABOUT ME</h1>
-    <p>
-        I am interested in technology, web development, and software logic.
-        I enjoy building websites, experimenting with designs, and learning
-        how JavaScript adds interactivity to web pages.
-    </p>
-    <p>
-        My goal is to improve my programming skills and build professional
-        projects that can be published online.
-    </p>
+<div class="section lang ar ar">
+<h1>مرحباً</h1>
+<div class="card">
+<p class="auto-type" data-text="تم تشغيل النظام... مرحباً بك في السيرة الذاتية السيبرانية"></p>
+
+<p>
+هذه الصفحة الرئيسية للموقع، تم تصميمها بأسلوب هاكر
+وتستخدم تأثيرات بصرية مثل الماتريكس والكتابة التلقائية.
+</p>
+</div>
 </div>
 
-<!-- SKILLS -->
-<div id="skills" class="section">
-    <h1>TECHNICAL SKILLS</h1>
+<!-- ===== SKILLS ===== -->
+<div id="skills" class="section lang en">
+<h1>SKILLS</h1>
+<div class="card">
+<p class="auto-type" data-text="Problem Solving"></p>
+<p>Ability to analyze problems and find logical solutions.</p>
 
-    <h2>HTML</h2>
-    <p>
-        Used to structure web pages and organize content such as headings,
-        text, navigation menus, and sections.
-    </p>
+<p class="auto-type" data-text="Cyber Thinking"></p>
+<p>Understanding how systems work internally.</p>
 
-    <h2>CSS</h2>
-    <p>
-        Used to design and style websites, control colors, layouts,
-        animations, and create modern user interfaces.
-    </p>
-
-    <h2>JavaScript</h2>
-    <p>
-        Used to add logic and interactivity to websites such as navigation,
-        animations, and dynamic content without reloading the page.
-    </p>
+<p class="auto-type" data-text="Web Development"></p>
+<p>Building websites using HTML, CSS and JavaScript.</p>
+</div>
 </div>
 
-<!-- CONTACT -->
-<div id="contact" class="section">
-    <h1>CONTACT</h1>
-    <p>Email: hasanotaibi154@gmail.com</p>
-    <p>Phone: 0791052519</p>
+<!-- ===== EXPLANATION ===== -->
+<div id="explain" class="section lang en">
+<h1>HOW THIS WEBSITE WORKS</h1>
+<div class="card">
+<p>
+• HTML is used to build the structure of the website.<br>
+• CSS is used to design the cyber theme and visual effects.<br>
+• JavaScript controls:
+</p>
+<ul>
+<li>Page navigation</li>
+<li>Automatic typing effect</li>
+<li>Matrix background animation</li>
+<li>Language switching</li>
+</ul>
+<p>
+All components are combined into one file for simplicity and GitHub usage.
+</p>
+</div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="contact" class="section lang en">
+<h1>CONTACT</h1>
+<div class="card">
+<p class="auto-type" data-text="Email: hasanotaibi154@gmail.com"></p>
+
+<p>
+You can contact me for educational or technical purposes.
+</p>
+</div>
+</div>
+
+<!-- ===== AI CHAT ===== -->
+<div id="chat" class="section lang en">
+<h1>AI CHAT</h1>
+<div class="card">
+    <div id="chatWindow" style="height:300px; overflow-y:auto; background:#000; border:1px solid #00ff88; padding:10px; margin-bottom:10px;"></div>
+    <div style="display:flex; gap:5px;">
+        <input id="userInput" placeholder="Type your question..." style="flex:1; padding:8px; background:#000; color:#00ff88; border:1px solid #00ff88;">
+        <button onclick="askAI()" style="padding:8px; background:#00ff88; border:none; cursor:pointer;">SEND</button>
+    </div>
+</div>
+</div>
+
+<div id="chat" class="section lang ar ar">
+<h1>محادثة الذكاء الاصطناعي</h1>
+<div class="card">
+    <div id="chatWindowAR" style="height:300px; overflow-y:auto; background:#000; border:1px solid #00ff88; padding:10px; margin-bottom:10px;"></div>
+    <div style="display:flex; gap:5px;">
+        <input id="userInputAR" placeholder="اكتب سؤالك..." style="flex:1; padding:8px; background:#000; color:#00ff88; border:1px solid #00ff88;">
+        <button onclick="askAI('ar')" style="padding:8px; background:#00ff88; border:none; cursor:pointer;">إرسال</button>
+    </div>
+</div>
 </div>
 
 </div>
 
 <footer>
-    © 2026 | Hasan Mohammad Hasan Otaibi | Web CV
+© 2026 | Hasan Otaibi | Cyber CV Project
 </footer>
 
-<script src="script.js"></script>
+<script>
+/* ===== LOGIN (NO CHECK) ===== */
+function login(){
+    document.getElementById("loginScreen").style.display="none";
+}
+
+/* ===== PAGE SWITCH ===== */
+function show(id){
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    const sec=document.getElementById(id);
+    sec.classList.add("active");
+    startTyping(sec);
+}
+
+/* ===== LANGUAGE SWITCH ===== */
+function setLang(lang){
+    document.querySelectorAll(".lang").forEach(l=>l.style.display="none");
+    document.querySelectorAll("."+lang).forEach(l=>l.style.display="block");
+    startTyping(document.querySelector(".section.active"));
+}
+
+/* ===== AUTO TYPING ===== */
+function startTyping(section){
+    section.querySelectorAll(".auto-type").forEach(el=>{
+        const text=el.dataset.text;
+        el.textContent="";
+        let i=0;
+        const t=setInterval(()=>{
+            el.textContent+=text[i++];
+            if(i>=text.length) clearInterval(t);
+        },40);
+    });
+}
+startTyping(document.querySelector(".section.active"));
+
+/* ===== MATRIX EFFECT ===== */
+const canvas=document.querySelector(".matrix");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+const chars="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const font=14;
+let drops=Array(Math.floor(canvas.width/font)).fill(1);
+
+setInterval(()=>{
+    ctx.fillStyle="rgba(0,0,0,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="#00ff88";
+    ctx.font=font+"px monospace";
+    drops.forEach((y,i)=>{
+        const t=chars[Math.floor(Math.random()*chars.length)];
+        ctx.fillText(t,i*font,y*font);
+        if(y*font>canvas.height&&Math.random()>0.97)drops[i]=0;
+        drops[i]++;
+    });
+},45);
+
+/* ===== SIMPLE AI CHAT WITHOUT API ===== */
+function askAI(lang='en'){
+    let input, chatWindow;
+    if(lang==='en'){
+        input=document.getElementById("userInput");
+        chatWindow=document.getElementById("chatWindow");
+    }else{
+        input=document.getElementById("userInputAR");
+        chatWindow=document.getElementById("chatWindowAR");
+    }
+
+    const userText=input.value.trim().toLowerCase();
+    if(userText==='') return;
+
+    // عرض رسالة المستخدم
+    const userMsg=document.createElement("div");
+    userMsg.style.color="#00ff88";
+    userMsg.style.margin="5px 0";
+    userMsg.textContent=(lang==='en'?"You: ":"أنت: ")+input.value;
+    chatWindow.appendChild(userMsg);
+    chatWindow.scrollTop=chatWindow.scrollHeight;
+    input.value="";
+
+    // الردود الجاهزة
+    let reply="";
+    if(userText==="hi" || userText==="hello"){
+        reply=(lang==='en')?"Hello! How are you?":"أهلاً! كيف حالك؟";
+    }else if(userText==="how are you" || userText==="كيف حالك"){
+        reply=(lang==='en')?"I'm a cyber AI, always ready!":"أنا ذكاء اصطناعي سيبراني، دائماً جاهز!";
+    }else if(userText==="اهلا" || userText==="مرحبا"){
+        reply=(lang==='en')?"Hello!":"أهلاً!";
+    }else{
+        reply=(lang==='en')?"I can only respond to greetings for now.":"يمكنني الرد فقط على التحيات حالياً.";
+    }
+
+    const aiMsg=document.createElement("div");
+    aiMsg.style.color="#0ff";
+    aiMsg.style.margin="5px 0";
+    aiMsg.textContent=(lang==='en'?"AI: ":"الذكاء الاصطناعي: ")+reply;
+    chatWindow.appendChild(aiMsg);
+    chatWindow.scrollTop=chatWindow.scrollHeight;
+}
+</script>
+
 </body>
 </html>
